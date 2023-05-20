@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+#preview p{
+  font-family: 'Rajdhani';
+}
+
+#preview{
+  border: 2px solid gold;
+  
+}
+.container{
+  position: relative;
+  top: 80px;
+  z-index: 9;
+  background: inherit;
+  height: 100%;
+  
+}
