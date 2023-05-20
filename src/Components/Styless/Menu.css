@@ -1,0 +1,119 @@
+.Menu{
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    width:15%;
+    height:100vh;
+    position: fixed;
+    top:0px;
+    right:0px;
+    margin-right: 0;
+    padding: 0;
+    z-index: 101;
+    opacity: 90%;
+    background: linear-gradient( to bottom,#563573,darkorchid,darkorchid);
+    animation-name: slidein;
+    animation-duration: 0.5s;
+
+    /* -ms-flex-align: end; */
+}
+
+#menutitle{
+ background-color: #2a0649;
+ height: 41px;
+ display: flex;
+ align-items: center;
+ margin:2px 2px;
+ justify-content: center;
+ color: chartreuse;
+ font-size: large;
+ 
+}
+.options{
+    height: 30px;
+    margin:0px 3px;
+    background-color: #2a0649;
+    text-decoration: none;
+    color: chartreuse;
+    opacity: 90%;
+}
+#option1{
+    background-color: #2a0649;
+}
+#option2{
+    background-color: #380b5e;
+}
+#option3{
+    background-color: #460b7a;
+}
+#option4{
+    background-color: #5f13a1;
+}
+#option5{
+    background-color: #7b19cb;
+}
+#option6{
+    background-color: #8912f1;
+}
+.options a{
+    text-decoration: none;
+    color: chartreuse;
+}
+.options a:hover{
+    text-decoration: none;
+    color:rgb(255, 218, 10);
+}
+.options a:active{
+    text-decoration: none;
+    color:rgb(255, 157, 10);
+}
+
+@keyframes slidein{
+    from{
+        right:-300px;
+
+    }
+    to{
+        right: 0px
+    }
+}
+
+#Logoutmenu{
+    color:rgb(255, 139, 162);
+    background-color: darkorchid;
+    border: 2px solid rgb(255, 139, 162);
+    position: relative;
+    right: 0px;
+    margin:2px 2px;
+  }
+  #Logoutmenu:hover{
+    color:darkorchid;
+    background-color: rgb(255, 139, 162);
+    border: 2px solid darkorchid ;
+    position: relative;
+    right: 0px;
+    margin: 2px 2px;
+
+  }
+
+  @media only screen and (min-width:0px) and (max-width:929px){
+    .Menu{
+        box-sizing: border-box;
+        display:flex;
+        flex-direction: column;
+        width:100%;
+        height:100vh;
+        position: fixed;
+        top:0px;
+        right:0px;
+        margin-right: 0;
+        padding: 0;
+        z-index: 101;
+        background: linear-gradient( to bottom,#563573,darkorchid,darkorchid);
+        animation-name: slidein;
+        animation-duration: 0.5s;
+    
+        /* -ms-flex-align: end; */
+    }
+
+  }
