@@ -1,0 +1,41 @@
+#Posts div{
+    border: 2px solid red;
+    margin:5px 2px;
+}
+#Posts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+
+}
+.posts{
+    width:300px;
+    padding: 16px 9px;
+}
+.Panel{
+    display: flex;
+    justify-content: center;
+}
+#newPost{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.newpost{
+    display: flex;
+    justify-content: center;
+}
+#postimage{
+    height: 100px;
+    width: 100px;
+}
+.Comment2{
+    display: flex;
+    justify-content: center;
+}
+.Reply2{
+    display: flex;
+    justify-content: center;
+}
