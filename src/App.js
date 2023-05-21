@@ -9,12 +9,9 @@ import Newcomp1 from './Components/Newcomp1';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Loginform from './Components/loginform';
-import Navbar from './Components/Navbar';
-import Main from './Components/Main';
 import { useLocation } from 'react-router-dom';
 import NavBar2 from './Components/NavBar2';
 import VConnect from './Components/VConnect';
-import VLabs from './Components/VLabs';
 import Jobs from './Components/Jobs';
 import Quiz from './Components/Quiz';
 import Library from './Components/Library';
@@ -30,7 +27,7 @@ import Menu from './Components/Menu';
 
 function App() {
 
-   
+   const [Accounts,setAccounts] = useState([])
   // Login States and handler
    const [login,setLogin] =useState(true);
   //console.log("login " + login);
@@ -41,6 +38,34 @@ function App() {
      }
   },[]);
   
+  const [userId, setUserId] = useState("")
+  const [pwd,setPwd] = useState("")
+  const [email, setEmail] = useState("")
+
+  const HandleUIDChange = (e) =>{
+       setUserId =e.target.value
+  }
+  
+  const HandleEmailChange = (e) =>{
+       setEmail =e.target.value
+  }
+  const newPwdChange =(e) =>{
+    setPwd = e.target.value;
+  }
+
+
+
+  const CreateAcc =()=>{
+   const newAccounts = Accounts.map([...Accounts,{
+      AccId: (Accounts.length +1),
+      UserId: userId,
+      Password: pwd,
+      Email: email,
+    },])
+    setAccounts(newAccounts)
+    
+  }
+
   const sub = ()=>{
    setLogin(true);
   }
