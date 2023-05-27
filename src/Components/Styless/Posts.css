@@ -11,7 +11,10 @@
     align-items: center;
     /* overflow: auto; */
     overflow: auto;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
+   flex-shrink: 0 0;
+   flex-grow: 0 0;
+
 
 }
 .posts{

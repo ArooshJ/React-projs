@@ -16,15 +16,15 @@ import Jobs from './Components/Jobs';
 import Quiz from './Components/Quiz';
 import Library from './Components/Library';
 import Menu from './Components/Menu';
+import Profile from './Components/Profile';
 
 
-
-let initAccounts =[{
-  AccId:1,
-  UserId:'First Account',
-  Password: 'Password1',
-  Email:'Email1',
-}]
+// let initAccounts =[{
+//   AccId:1,
+//   UserId:'First Account',
+//   Password: 'Password1',
+//   Email:'Email1',
+// }]
 
 
 
@@ -40,12 +40,29 @@ function App() {
       Email:'Email1',
       Followers:0,
       Following: 0,
+      dp:'https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg',
+      Posts: [
+        {
+                  id:1,
+                  name: "Name",
+                  content:"Content",
+                  Media : "3608226.jpg",
+                  Likes: 0,
+                  Shares: 0,
+                  Comments: [
+                      
+                      ],
+                      //noComs: `${this.Comments.length}`,
+          
+              },
+      ],
     }]
   )
   
    
     console.log(Accounts)
    const [loggedinAcc, setLoggedinAcc] = useState({})
+   const[loggegaccId,setLoggedAccId] = useState(0);
   // Login States and handler
    const [login,setLogin] =useState(true);
   //console.log("login " + login);
@@ -87,7 +104,23 @@ function App() {
       Password: pwd,
       Email: email,
       Followers: 0,
-      Following: 0
+      Following: 0,
+      dp:'https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg',
+      Posts:[
+        {
+          id:1,
+          name: "Name",
+          content:"Content",
+          Media : "3608226.jpg",
+          Likes: 0,
+          Shares: 0,
+          Comments: [
+              
+              ],
+              //noComs: `${this.Comments.length}`,
+        
+        }
+      ],
     },]
     
    setAccounts(newAccounts)
@@ -107,6 +140,7 @@ function App() {
     if(a.UserId === userId && a.Password === pwd){
        Accfound = true;
        setLoggedinAcc(a)
+       setLoggedAccId(a.AccId)
     }
    }
    Accounts.forEach(check)
@@ -140,6 +174,7 @@ function App() {
 
  const [btntext, setbtntext] = useState("Dark Mode");
 
+ //***PoSts */
  let  [postobjs,setPostobjs] = useState(
   [
       {
@@ -369,7 +404,7 @@ const HandleMenu = ()=>{
               } >
               </Route>
 
-              <Route path = '/VConnect' element = {login ? <VConnect bgstyle={bgstyle} loggedAcc = {loggedinAcc} postobjs={postobjs} setpostobjs ={setPostobjs}/> 
+              <Route path = '/VConnect' element = {login ? <VConnect bgstyle={bgstyle} loggedAcc = {loggedinAcc} postobjs={postobjs} setpostobjs ={setPostobjs} setAccs = {setAccounts} Accs ={Accounts} setLoggedinAcc = {setLoggedinAcc}/> 
               :<div style = {bgstyle}>
                 <Loginform   uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>} />
@@ -382,6 +417,8 @@ const HandleMenu = ()=>{
               <Route path = '/Quiz' element = {login ? <Quiz /> :<div style = {bgstyle}>
                 <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>} />
+              <Route path ='/Profile' element ={login ? <Profile Acc = {loggedinAcc} /> : <div style = {bgstyle}>
+                <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  /> </div>} />
      
             
             </Routes>

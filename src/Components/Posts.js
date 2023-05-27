@@ -78,24 +78,47 @@ export default function Posts(props) {
 // ]
 //     )
 
-
+ const UpdateAccpost =(newp) =>{
+    props.setAccs(
+        props.Accs.map(a=>{
+            if(a.AccId ===  props.loggedAcc.AccId){
+                   const newacc ={...a, Posts: [...a.Posts,
+                   newp]};
+                        props.setLoggedinAcc(newacc);
+                        return newacc;
+            }else{
+                return a;
+            }
+        }
+            
+        )
+            )
+ }
 
     const createnewPost =()=>{
-        props.setpostobjs([...props.postobjs, {
-        id:`${props.postobjs.length+1}`,
-        name: `${props.loggedAcc.UserId}`,
-        content:postcontent,
-        Media : selectedImage,
-        Likes: 0,
-        Shares: 0,
-        Comments: [
+        const p ={
+            id:`${props.postobjs.length+1}`,
+            name: `${props.loggedAcc.UserId}`,
+            content:postcontent,
+            Media : selectedImage,
+            Likes: 0,
+            Shares: 0,
+            Comments: [
+               
+                ],
            
-            ],
-        }])
-        setPostcontent("");
+            }
+        props.setpostobjs([...props.postobjs, p])
+        UpdateAccpost(p);
+       
+                setPostcontent("");
 
         return props.postobjs
-    }
+        }
+    
+
+  
+    
     const PostComment =(i)=>{
         props.setpostobjs(
             props.postobjs.map(p=>{
@@ -109,6 +132,7 @@ export default function Posts(props) {
                        
                  }]
                  p.Comments = updatedComs
+                //  UpdateAccpost(p);
                  return p
                  // end if
                 }
@@ -338,7 +362,7 @@ export default function Posts(props) {
     // ,[props.postobjs]
     // )
    
-    const posts = props.postobjs.map( post =>
+    const posts = props.postobjs.map(post =>
         <div id="post" key={post.id} className="posts">
             Post {post.id}
             <button id='Delete' onClick={()=>{DeletePost(post.id)}}>Delete</button>
@@ -465,4 +489,4 @@ export default function Posts(props) {
     </div>
        
   )
-}
+  }

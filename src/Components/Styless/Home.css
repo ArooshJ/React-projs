@@ -316,9 +316,8 @@
     text-decoration: none;
 
   }
-  #loggedAcc a{
+  #profilelink{
     text-decoration: none;
     color: yellow;
-    
     font-family: inherit;
   }

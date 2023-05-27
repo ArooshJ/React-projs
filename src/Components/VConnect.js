@@ -16,7 +16,7 @@ export default function VConnect(props) {
             DIVE IN !!!!
          </h1>
 
-         <Posts loggedAcc ={props.loggedAcc} postobjs ={props.postobjs} setpostobjs = {props.setpostobjs}/>
+         <Posts loggedAcc ={props.loggedAcc} postobjs ={props.postobjs} setpostobjs = {props.setpostobjs} setAccs ={props.setAccs} Accs ={props.Accs} setLoggedinAcc = {props.setLoggedinAcc}/>
          <br />
          <br />
     </div>

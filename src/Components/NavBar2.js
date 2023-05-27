@@ -53,7 +53,7 @@ export default class NavBar2 extends Component {
           </div>
            <div id="loggedacc">
             Logged in as: 
-            <Link to ="/Profile">{this.props.loggedAcc.UserId}</Link>
+            <Link to ="/Profile" id='profilelink'>{this.props.loggedAcc.UserId}</Link>
            </div>
            
            <button id ="Logout" onClick={this.props.onlogout}>LogOut</button>
