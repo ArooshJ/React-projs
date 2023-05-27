@@ -6,9 +6,9 @@ import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 
 import Home from './Components/Home';
 import Newcomp1 from './Components/Newcomp1';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useEffect } from 'react';
-import Loginform from './Components/loginform';
+import Loginform  from './Components/loginform'; 
 import { useLocation } from 'react-router-dom';
 import NavBar2 from './Components/NavBar2';
 import VConnect from './Components/VConnect';
@@ -19,7 +19,12 @@ import Menu from './Components/Menu';
 
 
 
-
+let initAccounts =[{
+  AccId:1,
+  UserId:'First Account',
+  Password: 'Password1',
+  Email:'Email1',
+}]
 
 
 
@@ -27,7 +32,20 @@ import Menu from './Components/Menu';
 
 function App() {
 
-   const [Accounts,setAccounts] = useState([])
+  const [Accounts,setAccounts] = useState(
+    [{
+      AccId:1,
+      UserId:'Acc1',
+      Password: 'pwd1',
+      Email:'Email1',
+      Followers:0,
+      Following: 0,
+    }]
+  )
+  
+   
+    console.log(Accounts)
+   const [loggedinAcc, setLoggedinAcc] = useState({})
   // Login States and handler
    const [login,setLogin] =useState(true);
   //console.log("login " + login);
@@ -41,36 +59,80 @@ function App() {
   const [userId, setUserId] = useState("")
   const [pwd,setPwd] = useState("")
   const [email, setEmail] = useState("")
+  const [confirmpwd,setConfirmpwd] = useState("")
 
   const HandleUIDChange = (e) =>{
-       setUserId =e.target.value
+       setUserId (e.target.value)
   }
   
   const HandleEmailChange = (e) =>{
-       setEmail =e.target.value
+       setEmail (e.target.value)
   }
   const newPwdChange =(e) =>{
-    setPwd = e.target.value;
+    setPwd( e.target.value)
   }
-
-
+  const confirmPwdChange =(e)=>{
+    setConfirmpwd(e.target.value) 
+  }
+  
+  
 
   const CreateAcc =()=>{
-   const newAccounts = Accounts.map([...Accounts,{
+
+   if(pwd === confirmpwd){
+    console.log("pwd confirmed")
+    const newAccounts = [...Accounts,{
       AccId: (Accounts.length +1),
       UserId: userId,
       Password: pwd,
       Email: email,
-    },])
-    setAccounts(newAccounts)
+      Followers: 0,
+      Following: 0
+    },]
+    
+   setAccounts(newAccounts)
+    // console.log(Accounts[Accounts.length-1])
+    
+    alert("Account Created Successfully")
+    
+   }else{
+    alert("Your Passwords Don't Match!! Pls Enter Same password in \'Confirm Password\' Box")
+   }
     
   }
 
   const sub = ()=>{
-   setLogin(true);
-  }
+   let Accfound = false
+   const check =(a)=>{
+    if(a.UserId === userId && a.Password === pwd){
+       Accfound = true;
+       setLoggedinAcc(a)
+    }
+   }
+   Accounts.forEach(check)
+   if(Accfound){
+      setLogin(true)
+      console.log(loggedinAcc)
+   }else{
+       alert("Invalid Username or Password!")
+      setLogin(false)
+   }
+  //setLogin(true)
+   }
+   
+ 
+  
   const HandleLogout = ()=>{
     setLogin(false);
+    setLoggedinAcc({
+      AccId: '',
+      UserId: 'None',
+      Email:'',
+      Password: '',
+      Followers:0,
+      Following:0
+
+    });
   }
 
 
@@ -78,7 +140,48 @@ function App() {
 
  const [btntext, setbtntext] = useState("Dark Mode");
 
+ let  [postobjs,setPostobjs] = useState(
+  [
+      {
+  id:1,
+  name: "Name",
+  content:"Content",
+  Media : "3608226.jpg",
+  Likes: 0,
+  Shares: 0,
+  Comments: [
+      
+      ],
+      //noComs: `${this.Comments.length}`,
 
+},
+      {
+  id:2,
+  name: "Name2",
+  content:"Content2",
+  Media : "3608226.jpg",
+  Likes: 0,
+  Shares: 0,
+  Comments: [
+     
+      ],
+      //noComs: `${this.Comments.length}`,
+
+},
+      {
+  id:3,
+  name: "Name3",
+  content:"Content3",
+  Media : "3608226.jpg",
+  Likes: 0,
+  Shares: 0,
+  Comments: [
+      ],
+      //noComs: `${this.Comments.length}`,
+
+},
+]
+)
 
 
  // Color modes
@@ -243,14 +346,14 @@ const HandleMenu = ()=>{
     return (
       <div className="App" style={bgstyle}>
       <Menu display = {menuState} mclick ={HandleMenu} mode ={changeMode} checkb ={HandleCheck} onlogout = {HandleLogout}/>
-      <NavBar2 mode ={changeMode} appstyle ={bgstyle} tbstyle ={tboxStyle} onlogout = {HandleLogout} checkb ={HandleCheck} menu ={HandleMenu} navstyle ={navstyl} topstyle ={navStyle} /> 
+      <NavBar2 mode ={changeMode} appstyle ={bgstyle} tbstyle ={tboxStyle} onlogout = {HandleLogout} checkb ={HandleCheck} menu ={HandleMenu} navstyle ={navstyl} topstyle ={navStyle} loggedAcc={loggedinAcc} /> 
        
 
           <div className="container" style={bgstyle} >
             <Routes>
               <Route  path = '/' element={ login ? <Home/> : 
                  <div style = {bgstyle}>
-                   <Loginform onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
+                   <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
                  </div>}></Route>
               <Route  path = '/TextEditor' element ={
                   login ?
@@ -261,22 +364,23 @@ const HandleMenu = ()=>{
                   <Newcomp1 name = "Comp1" onlogout = {HandleLogout} txtboxstyle = {tboxStyle} btnstyle = {btnStyle}/>
                 </div>
                 : <div style = {bgstyle}>
-                <Loginform onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
+                <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>
-              } ></Route>
+              } >
+              </Route>
 
-              <Route path = '/VConnect' element = {login ? <VConnect bgstyle={bgstyle} /> 
+              <Route path = '/VConnect' element = {login ? <VConnect bgstyle={bgstyle} loggedAcc = {loggedinAcc} postobjs={postobjs} setpostobjs ={setPostobjs}/> 
               :<div style = {bgstyle}>
-                <Loginform onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
+                <Loginform   uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>} />
               <Route path = '/Library' element = {login ? <Library /> :<div style = {bgstyle}>
-                <Loginform onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
+                <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>} />
               <Route path = '/Jobs' element = {login ? <Jobs /> :<div style = {bgstyle}>
-                <Loginform onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
+                <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>} />
               <Route path = '/Quiz' element = {login ? <Quiz /> :<div style = {bgstyle}>
-                <Loginform onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
+                <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>} />
      
             
@@ -293,7 +397,7 @@ const HandleMenu = ()=>{
   //   return(
 
   //     <div style = {bgstyle}>
-  //       <Loginform onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
+  //       <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
   //     </div>
       
   //   );

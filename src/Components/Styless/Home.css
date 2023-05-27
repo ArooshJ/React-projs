@@ -235,6 +235,7 @@
     border: 2px solid rgb(255, 139, 162);
     position: relative;
     right: 50px;
+    z-index: -2;
   }
   #Logout:hover{
     color:darkorchid;
@@ -306,3 +307,18 @@
     }
   }
   
+  #loggedacc{
+    width: 56px;
+    position: absolute;
+    right: 50px;
+    margin: 4px 15px;
+    z-index: -1;
+    text-decoration: none;
+
+  }
+  #loggedAcc a{
+    text-decoration: none;
+    color: yellow;
+    
+    font-family: inherit;
+  }

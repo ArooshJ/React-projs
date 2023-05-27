@@ -15,13 +15,13 @@ export default function Loginform(props) {
             <h4>Login to My-Site</h4>
              <label htmlFor=""> UserName: </label>
              <br />
-             <input type="text" name="UserName " id="username" style={props.tbstyle} />
+             <input type="text" name="UserName " id="username" style={props.tbstyle} onChange={props.uidc}/>
              <br />
              <label htmlFor="">Password : </label>
              <br />
-             <input type="password" name="Password" id="password" style={props.tbstyle} />
+             <input type="password" name="Password" id="password" style={props.tbstyle} onChange={props.pwdc} />
              <br />
-             <input type="submit" value="Submit" onClick={props.onSubmit} className='submit'  />
+             <input type="button" value="Submit" onClick={props.onSubmit} className='submit'  />
             </div>
             
         </form>
@@ -43,21 +43,21 @@ export default function Loginform(props) {
                 
             </div>
             <label htmlFor=""> UserName: </label> <br />
-            <input type="text" name="namee" id="" style={props.tbstyle} />
+            <input type="text" name="namee" id="" style={props.tbstyle} onChange={props.uidc} />
             <br />
             <label htmlFor=""> E-mail  : </label>
             <br />
-            <input type="e-mail" name="namee" id="" style={props.tbstyle} />
+            <input type="e-mail" name="namee" id="" style={props.tbstyle} onChange={props.emc} />
             <br />
             <label htmlFor="">Password : </label>
              <br />
-             <input type="password" name="Password" id="password" style={props.tbstyle} /><br />
+             <input type="password" name="Password" id="password" style={props.tbstyle} onChange={props.pwdc}/><br />
              <label htmlFor=""> Confirm Password : </label>
              <br />
-             <input type="password" name="Password" id="password" style={props.tbstyle} />
+             <input type="password" name="Password" id="password" style={props.tbstyle} onChange={props.confirm} />
              <br />
              
-             <input type="submit" value="Create Account" onClick={props.onSubmit} className='submit'  />
+             <input type="button" value="Create Account" onClick={props.create} className='submit'  />
             </div>
             
 

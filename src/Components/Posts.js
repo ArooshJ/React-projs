@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react';
 import './Styless/Posts.css'
 
  
@@ -34,55 +35,55 @@ export default function Posts(props) {
 
     
 
-    let  [postobjs,setPostobjs] = useState(
-        [
-            {
-        id:1,
-        name: "Name",
-        content:"Content",
-        Media : "3608226.jpg",
-        Likes: 0,
-        Shares: 0,
-        Comments: [
+//     let  [props.postobjs,props.setpostobjs] = useState(
+//         [
+//             {
+//         id:1,
+//         name: "Name",
+//         content:"Content",
+//         Media : "3608226.jpg",
+//         Likes: 0,
+//         Shares: 0,
+//         Comments: [
             
-            ],
-            //noComs: `${this.Comments.length}`,
+//             ],
+//             //noComs: `${this.Comments.length}`,
 
-    },
-            {
-        id:2,
-        name: "Name2",
-        content:"Content2",
-        Media : "3608226.jpg",
-        Likes: 0,
-        Shares: 0,
-        Comments: [
+//     },
+//             {
+//         id:2,
+//         name: "Name2",
+//         content:"Content2",
+//         Media : "3608226.jpg",
+//         Likes: 0,
+//         Shares: 0,
+//         Comments: [
            
-            ],
-            //noComs: `${this.Comments.length}`,
+//             ],
+//             //noComs: `${this.Comments.length}`,
 
-    },
-            {
-        id:3,
-        name: "Name3",
-        content:"Content3",
-        Media : "3608226.jpg",
-        Likes: 0,
-        Shares: 0,
-        Comments: [
-            ],
-            //noComs: `${this.Comments.length}`,
+//     },
+//             {
+//         id:3,
+//         name: "Name3",
+//         content:"Content3",
+//         Media : "3608226.jpg",
+//         Likes: 0,
+//         Shares: 0,
+//         Comments: [
+//             ],
+//             //noComs: `${this.Comments.length}`,
 
-    },
-]
-    )
+//     },
+// ]
+//     )
 
 
 
     const createnewPost =()=>{
-        setPostobjs([...postobjs, {
-        id:`${postobjs.length+1}`,
-        name: "Name",
+        props.setpostobjs([...props.postobjs, {
+        id:`${props.postobjs.length+1}`,
+        name: `${props.loggedAcc.UserId}`,
         content:postcontent,
         Media : selectedImage,
         Likes: 0,
@@ -93,17 +94,17 @@ export default function Posts(props) {
         }])
         setPostcontent("");
 
-        return postobjs
+        return props.postobjs
     }
     const PostComment =(i)=>{
-        setPostobjs(
-            postobjs.map(p=>{
+        props.setpostobjs(
+            props.postobjs.map(p=>{
                 if(p.id === i){
                  const updatedComs = [...p.Comments,{
                     ComId: (p.Comments.length + 1),
                     Content: comContent,
                         Likes: 0,
-                        by: "someone",
+                        by: `${props.loggedAcc.UserId}`,
                         Replies:[],
                        
                  }]
@@ -121,8 +122,8 @@ export default function Posts(props) {
     }
 
     const PostReply = (pi,ci) =>{
-        setPostobjs(
-            postobjs.map(p =>{
+        props.setpostobjs(
+            props.postobjs.map(p =>{
                 if(p.id === pi){
                    p.Comments.map(c =>{
                     if(c.ComId === ci){
@@ -130,7 +131,7 @@ export default function Posts(props) {
                         RepId: c.Replies.length+1,
                         content: repContent,
                         likes: 0,
-                        by: "Someone"
+                        by: `${props.loggedAcc.UserId}`
                        }]
                        c.Replies = updatedReplies;
                       
@@ -153,9 +154,9 @@ export default function Posts(props) {
 
     const Like = (i) =>{
         // console.log("liking")
-        setPostobjs(
+        props.setpostobjs(
             
-            postobjs.map(post => {
+            props.postobjs.map(post => {
                 if(post.id === i){
                     return {...post, Likes: post.Likes+1}
                 }
@@ -168,8 +169,8 @@ export default function Posts(props) {
         // console.log("liked")
     }
     const LikeCom =(pi,ci)=>{
-        setPostobjs(
-            postobjs.map(p=>{
+        props.setpostobjs(
+            props.postobjs.map(p=>{
                 if(p.id === pi){
                     p.Comments.map(
                         c=>{
@@ -199,8 +200,8 @@ export default function Posts(props) {
         )
     }
     const LikeRep =(pi,ci,ri)=>{
-        setPostobjs(
-            postobjs.map(p=>{
+        props.setpostobjs(
+            props.postobjs.map(p=>{
                 if(p.id === pi){
                     p.Comments.map(
                         c=>{
@@ -232,9 +233,9 @@ export default function Posts(props) {
     }
     const Share = (i) =>{
         // console.log("liking")
-        setPostobjs(
+        props.setpostobjs(
             
-            postobjs.map(post => {
+            props.postobjs.map(post => {
                 if(post.id === i){
                     return {...post, Shares: post.Shares+1}
                 }
@@ -248,38 +249,125 @@ export default function Posts(props) {
     }
 
     const DeletePost =(id) =>{
-        setPostobjs(
-            postobjs.filter(post => post.id !== id)
+        props.setpostobjs(
+            props.postobjs.filter(post => post.id !== id)
         )
     }
     
-    
-    
-    const posts = postobjs.map( post =>
+    // let posts;
+    // useEffect(()=>{ posts = props.postobjs.map( post =>
+    //     <div id="post" key={post.id} className="posts">
+    //         Post {post.id}
+    //         <button id='Delete' onClick={()=>{DeletePost(post.id)}}>Delete</button>
+    //         <div className="by">
+    //             By: {post.name}
+    //         </div>
+    //         <div className="media">
+    //          <img src= {post.Media} alt="idk why doesnt this work" id ="postimage"/>
+    //         </div>
+    //         <div className="Content">
+    //                {post.content}
+    //         </div>
+    //         <div className="Panel">
+    //             <div id = {`post${post.id} likes`} onClick={() => {Like(post.id)}}>
+    //                Post Like {post.Likes}
+    //             </div>
+    //             <div id ={`post${post.id}shares`} onClick={()=>{Share(post.id)}}>
+    //                 Shares: {post.Shares}
+    //             </div>
+    //             <div>
+    //                 Follow
+    //             </div>
+                 
+    //         </div>
+    //         {post.Comments.map( comment=>
+    //           <div id={`p${post.id}c${comment.ComId}`} key={`p${post.id}c${comment.ComId}`} className="comments">
+    //           {/* Comment {comment.ComId} */}
+    //           <div className="comContent">
+    //           {comment.Content}
+    //           </div>
+    //           <div className="Comment2">
+    //              <div className="commentby">
+    //                 {comment.by}
+    //               </div>
+    //              <div className="ComLikes" onClick={()=>{LikeCom(post.id,comment.ComId)}}>
+    //                   Comment Likes: {comment.Likes}
+    //              </div>
+    //           </div>
+              
+    //           <div className="Replies">
+    //           {
+    //             comment.Replies.map(reply =>(
+    //                 <div id= {`p${post.id}c${comment.ComId }r${reply.RepId}`} key={`p${post.id}c${comment.ComId }r${reply.RepId}`} className="Replies">
+    //                 Reply {reply.RepId}
+    //                 <div className="repContent">{reply.content}</div>
+    //                 <div className="Reply2">
+    //                    <div className="replyBy"> {reply.by}</div>
+    //                    <div className="repLikes" onClick={()=>{LikeRep(post.id,comment.ComId,reply.RepId)}}> ReplyLikes: {reply.likes}</div>
+    //                 </div>
+                   
+                    
+                    
+                   
+
+    //              </div>
+    //             )
+                    
+                
+    //             )
+    //           }
+    //           </div> 
+    //           {/* End reply div */}
+    //            <div className="newReply">
+    //             Reply this Comment:
+    //             <textarea name="" id="" cols="30" rows="1" onChange={HandleReplyChange}></textarea>
+    //             <button className="postReply" onClick={() =>{PostReply(post.id,comment.ComId)}}>Reply</button>
+    //            </div>
+              
+    //          </div> // End Comment div
+    //             // End comment object
+    //         )}
+    //         <div className="newComment">
+    //             Comment on this post: 
+    //             <textarea name="" id="" cols="30" rows="2"  onChange={HandleCommentChange}> </textarea>
+    //             <button className='PostCom' onClick={()=>{PostComment(post.id)}}>Comment</button>
+    //         </div>
+    //     </div>
+    // ) 
+    // return posts }
+    // ,[props.postobjs]
+    // )
+   
+    const posts = props.postobjs.map( post =>
         <div id="post" key={post.id} className="posts">
             Post {post.id}
             <button id='Delete' onClick={()=>{DeletePost(post.id)}}>Delete</button>
             <div className="by">
                 By: {post.name}
             </div>
+            <div className="netContent">
             <div className="media">
              <img src= {post.Media} alt="idk why doesnt this work" id ="postimage"/>
             </div>
             <div className="Content">
                    {post.content}
             </div>
+            </div>
+            
             <div className="Panel">
-                <div id = {`post${post.id} likes`} onClick={() => {Like(post.id)}}>
-                   Post Like {post.Likes}
+                <div id = {`post${post.id} likes`} className='postLikes' onClick={() => {Like(post.id)}}>
+                   Like {post.Likes}
                 </div>
-                <div id ={`post${post.id}shares`} onClick={()=>{Share(post.id)}}>
-                    Shares: {post.Shares}
+                <div id ={`post${post.id}shares`} className='postShares' onClick={()=>{Share(post.id)}}>
+                    Share {post.Shares}
                 </div>
-                <div>
+                <div className='Follow'>
                     Follow
                 </div>
                  
             </div>
+            <div className='comContainer'> 
+            <b>Comments</b>
             {post.Comments.map( comment=>
               <div id={`p${post.id}c${comment.ComId}`} key={`p${post.id}c${comment.ComId}`} className="comments">
               {/* Comment {comment.ComId} */}
@@ -291,15 +379,16 @@ export default function Posts(props) {
                     {comment.by}
                   </div>
                  <div className="ComLikes" onClick={()=>{LikeCom(post.id,comment.ComId)}}>
-                      Comment Likes: {comment.Likes}
+                       Likes: {comment.Likes}
                  </div>
               </div>
               
-              <div className="Replies">
+              <div className="RepliesC">
+                <b>Replies</b>
               {
                 comment.Replies.map(reply =>(
                     <div id= {`p${post.id}c${comment.ComId }r${reply.RepId}`} key={`p${post.id}c${comment.ComId }r${reply.RepId}`} className="Replies">
-                    Reply {reply.RepId}
+                    {/* Reply {reply.RepId} */}
                     <div className="repContent">{reply.content}</div>
                     <div className="Reply2">
                        <div className="replyBy"> {reply.by}</div>
@@ -320,7 +409,7 @@ export default function Posts(props) {
               {/* End reply div */}
                <div className="newReply">
                 Reply this Comment:
-                <textarea name="" id="" cols="30" rows="1" onChange={HandleReplyChange}></textarea>
+                <textarea name="" id="" cols="20" rows="1" onChange={HandleReplyChange}></textarea>
                 <button className="postReply" onClick={() =>{PostReply(post.id,comment.ComId)}}>Reply</button>
                </div>
               
@@ -329,8 +418,12 @@ export default function Posts(props) {
             )}
             <div className="newComment">
                 Comment on this post: 
-                <textarea name="" id="" cols="30" rows="2"  onChange={HandleCommentChange}> </textarea>
+                <textarea name="" id="" cols="10" rows="2"  onChange={HandleCommentChange} className='CommentTB'> </textarea>
+                <div className="PostComHolder">
                 <button className='PostCom' onClick={()=>{PostComment(post.id)}}>Comment</button>
+                </div>
+                
+            </div>
             </div>
         </div>
     )
@@ -340,13 +433,10 @@ export default function Posts(props) {
 
   return (
     <div className="PostComp">
-        <h2>Posts</h2>
-        <div id ="Posts">
-        {posts}   
-        </div>
 
-    <div id='NewPostbtn'> Post Something </div>
-    <div id="newPost" >
+<div id="newPost" >
+         <div id='NewPostbtn'> <h5>Post Something: </h5> </div>
+   
         Enter Post Content: <br />
         <div  className='newpost'>
         <textarea name="content" id="" cols="30" rows="5" onChange={HandleContent}></textarea>
@@ -366,6 +456,12 @@ export default function Posts(props) {
         
 
     </div>
+        <h2>Posts</h2>
+
+        <div id ="Posts">
+        {posts}   
+        </div>
+    
     </div>
        
   )

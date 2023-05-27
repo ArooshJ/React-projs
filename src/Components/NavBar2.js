@@ -9,7 +9,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 export default class NavBar2 extends Component {
  
   render() {
-    const{ mode,appstyle,tbstyle,checkb,onlogout,menu,topstyle,navstyle} = this.props;
+    const{ mode,appstyle,tbstyle,checkb,onlogout,menu,topstyle,navstyle,loggedAcc} = this.props;
     
 
     return (
@@ -51,7 +51,10 @@ export default class NavBar2 extends Component {
            <input type="checkbox" name="" id="Change?" onChange={this.props.checkb} />
            <input type="color" name="Background:" id="bg" onChange={this.props.mode} style={this.props.bgstyle} />
           </div>
-           
+           <div id="loggedacc">
+            Logged in as: 
+            <Link to ="/Profile">{this.props.loggedAcc.UserId}</Link>
+           </div>
            
            <button id ="Logout" onClick={this.props.onlogout}>LogOut</button>
 
