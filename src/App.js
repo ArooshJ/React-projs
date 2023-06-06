@@ -39,7 +39,7 @@ function App() {
       Password: 'pwd1',
       Email:'Email1',
       Followers:0,
-      Following: 0,
+      Following:0,
       dp:'https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg',
       Posts: [
         {
@@ -418,7 +418,7 @@ const HandleMenu = ()=>{
                 <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>} />
               <Route path ='/Profile' element ={login ? <Profile Acc = {loggedinAcc} /> : <div style = {bgstyle}>
-                <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  /> </div>} />
+                <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle} setlogin = {setLogin} /> </div>} />
      
             
             </Routes>

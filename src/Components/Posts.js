@@ -12,7 +12,9 @@ export default function Posts(props) {
     const[postcontent,setPostcontent] = useState("");
     const[comContent,setComContent] = useState("");
     const[repContent,setRepContent] = useState("");
-
+    const[displayedposts,setDisplayedposts] = useState(props.postobjs);
+   
+   
     const HandleContent =(e)=>{
         setPostcontent(e.target.value);
     }
@@ -97,7 +99,7 @@ export default function Posts(props) {
 
     const createnewPost =()=>{
         const p ={
-            id:`${props.postobjs.length+1}`,
+            id:Number(`${props.postobjs[props.postobjs.length-1].id}`)+1,
             name: `${props.loggedAcc.UserId}`,
             content:postcontent,
             Media : selectedImage,
@@ -112,7 +114,7 @@ export default function Posts(props) {
         UpdateAccpost(p);
        
                 setPostcontent("");
-
+        setDisplayedposts(props.postobjs)
         return props.postobjs
         }
     
@@ -143,6 +145,7 @@ export default function Posts(props) {
                 
             )
         )
+        setDisplayedposts(props.postobjs)
     }
 
     const PostReply = (pi,ci) =>{
@@ -174,6 +177,7 @@ export default function Posts(props) {
             }
             )
         )
+        setDisplayedposts(props.postobjs)
     }
 
     const Like = (i) =>{
@@ -191,6 +195,7 @@ export default function Posts(props) {
             
         )
         // console.log("liked")
+        setDisplayedposts(props.postobjs)
     }
     const LikeCom =(pi,ci)=>{
         props.setpostobjs(
@@ -222,6 +227,7 @@ export default function Posts(props) {
                
             })
         )
+        setDisplayedposts(props.postobjs)
     }
     const LikeRep =(pi,ci,ri)=>{
         props.setpostobjs(
@@ -254,6 +260,7 @@ export default function Posts(props) {
                 }
             })
         )
+        setDisplayedposts(props.postobjs)
     }
     const Share = (i) =>{
         // console.log("liking")
@@ -270,12 +277,14 @@ export default function Posts(props) {
             
         )
         // console.log("liked")
+        setDisplayedposts(props.postobjs)
     }
 
     const DeletePost =(id) =>{
         props.setpostobjs(
             props.postobjs.filter(post => post.id !== id)
         )
+        setDisplayedposts(props.postobjs)
     }
     
     // let posts;
@@ -361,8 +370,22 @@ export default function Posts(props) {
     // return posts }
     // ,[props.postobjs]
     // )
+    const HandleFollow = (p)=>{
+      props.setAccs(
+        props.Accs.map(a =>{
+            if(a.UserId === p.name){
+                return {...a, Followers:a.Followers+1}
+            }
+            if(a.AccId === props.loggedAcc.AccId){
+                return{...a, Following: a.Following+1}
+            }
+            return a;
+        })
+      )
+      document.getElementsByClassName('Follow').style = {color:'red',}
+    }
    
-    const posts = props.postobjs.map(post =>
+    const posts= displayedposts.map(post =>
         <div id="post" key={post.id} className="posts">
             Post {post.id}
             <button id='Delete' onClick={()=>{DeletePost(post.id)}}>Delete</button>
@@ -380,13 +403,13 @@ export default function Posts(props) {
             
             <div className="Panel">
                 <div id = {`post${post.id} likes`} className='postLikes' onClick={() => {Like(post.id)}}>
-                   Like {post.Likes}
+                👍🏻 {post.Likes}
                 </div>
                 <div id ={`post${post.id}shares`} className='postShares' onClick={()=>{Share(post.id)}}>
                     Share {post.Shares}
                 </div>
-                <div className='Follow'>
-                    Follow
+                <div className='Follow'  >
+                    Follow 
                 </div>
                  
             </div>
@@ -402,8 +425,8 @@ export default function Posts(props) {
                  <div className="commentby">
                     {comment.by}
                   </div>
-                 <div className="ComLikes" onClick={()=>{LikeCom(post.id,comment.ComId)}}>
-                       Likes: {comment.Likes}
+                 <div  className="ComLikes" onClick={()=>{LikeCom(post.id,comment.ComId)}}>
+                         <div className='material-symbols-outlined' style={{position:'unset',top:'unset',right:'unset',fontSize:'12px',}}>👍🏻</div>:{comment.Likes}
                  </div>
               </div>
               
@@ -416,7 +439,7 @@ export default function Posts(props) {
                     <div className="repContent">{reply.content}</div>
                     <div className="Reply2">
                        <div className="replyBy"> {reply.by}</div>
-                       <div className="repLikes" onClick={()=>{LikeRep(post.id,comment.ComId,reply.RepId)}}> ReplyLikes: {reply.likes}</div>
+                       <div className="repLikes" onClick={()=>{LikeRep(post.id,comment.ComId,reply.RepId)}}> 👍🏻: {reply.likes}</div>
                     </div>
                    
                     
@@ -451,14 +474,36 @@ export default function Posts(props) {
             </div>
         </div>
     )
+    
+   // const [displayedposts,setDisplayedposts] = useState(posts)
+const allposts = props.postobjs
 
 
 
-
+ const filterbyAcc =()=>{
+   setDisplayedposts(props.postobjs.filter(item=>item.name === props.loggedAcc.UserId))
+ }
+const removefilter =()=>{
+ setDisplayedposts(props.postobjs);
+}
   return (
     <div className="PostComp">
 
-<div id="newPost" >
+
+        <h2>Posts</h2>
+
+<div id ='filterposts' onClick={()=>{filterbyAcc()}}>Filter</div>
+<div id ='removefilter' onClick={()=>{removefilter()}}> Remove Filter</div>
+        <div id ="Posts">
+        {posts}   
+
+      
+        </div>
+
+        <div onClick={()=>{setNewPoststyle({display:'flex'})}}>Post Something?</div>
+
+        <div className="newpostcont">
+        <div id="newPost" style = {newPoststyle} >
          <div id='NewPostbtn'> <h5>Post Something: </h5> </div>
    
         Enter Post Content: <br />
@@ -466,24 +511,20 @@ export default function Posts(props) {
         <textarea name="content" id="" cols="30" rows="5" onChange={HandleContent}></textarea>
         </div>
         
-        <br />
-        Upload image: <br />
-        <br />
-        <div  className='newpost'>
+        Upload image: 
+        
+        <div  className='newpost' id = 'fileinput'>
         <input type="file" name="Post image, video" id="File Input" onChange={HandleFileChange} />
         </div>
-        <br />
+        
         
         <div className="newpost">
-        <button onClick={()=>{createnewPost()}}>Post</button>
+        <button onClick={()=>{createnewPost()
+                               setNewPoststyle({display:'none'})}}>Post</button>
         </div>
         
 
     </div>
-        <h2>Posts</h2>
-
-        <div id ="Posts">
-        {posts}   
         </div>
     
     </div>

@@ -33,14 +33,14 @@ export default function Navbar(props) {
   const [navStyle,setNavStyle] = useState({
     // position: 'absolute',
     top: '0px',
-    border: '3px solid red',
+    border: '1px solid red',
     backgroundColor: 'cyan',
     color:'red',
     padding:'0',
     margin:'0',
-    width:'100%',
+    width:'99%',
     height:'30px',
-    borderRadius:'7px'
+    borderRadius:'0px'
     // overflow:'auto'
     
     

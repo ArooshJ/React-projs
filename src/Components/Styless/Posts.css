@@ -133,7 +133,8 @@
    
 }
 .comments{
-    background-color: blanchedalmond;
+/* background-color: blanchedalmond; */
+   background-color: #e498ff;
     margin:9px 5px;
     overflow: auto;
    border-radius: 7px;
@@ -154,4 +155,57 @@
     padding: 2px 2px;
     border-radius: 5px;
     overflow: auto;
+}
+#newPost{
+    border-top:2px solid gold;
+    border-bottom:2px solid gold;
+    padding: 4px;
+    
+    justify-self: center;
+}
+#fileinput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width:60px; */
+   
+    justify-self: center;
+
+}
+#fileinput input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width:60px; */
+     width:178px;
+    justify-self: center;
+    background-color:  hsl(289, 37%, 23%) ;
+    color: rgb(252, 169, 245);
+    border: 2px solid rgb(87 14 81); 
+    border-radius: 6px;
+    margin: 2px 2px;
+
+}
+
+.PostComp textarea{
+    color: rgb(87 14 81);
+    background-color:#e2b5ed;
+    border: 3px solid rgb(87 14 81);
+    border-radius: 5px;
+    
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+.ComLikes {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
 }
