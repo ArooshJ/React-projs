@@ -1,0 +1,82 @@
+#bigimage{
+    height: 400px;
+    overflow: hidden;
+    width: 100%;
+}
+#bigimage img{
+    width: 100%;
+}
+#dp{
+    height: 200px;
+    width: 200px;
+    border: 2px solid red;
+    border-radius: 100px;
+    margin: 2px 75px;
+}
+#dp img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+#infoContainer{
+    display: flex;
+    background-color: #e8c8f0;
+    /* background: linear-gradient(to bottom,rgb(202, 95, 255),#e2b5ed,#e2b5ed,#e8c8f0,#e8c8f0); */
+    /* border-radius: 30px; */
+    /* justify-content: center; */
+}
+#info{
+    margin: 2px 2px;
+    padding: 2px 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    align-items: flex-start;
+    /* border: 2px solid rebeccapurple; */
+    color: black;
+    width: 95%;
+    margin:7px 24px;
+    /* display: none; */
+}
+#stats{
+    margin: 10px 2px;
+}
+#info h2{
+    margin-top: 0;
+}
+#edit{
+position: relative;
+color: red;
+top: 0px;
+left:90%;
+
+}
+#AccPosts{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#editinfo{
+    border:2px dotted brown;
+    height: 100%;
+    width: 100%;
+    
+    display: none;
+    
+}
+.editAcc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.PostLink{
+    text-decoration: none;
+}
+
+.editAcc input{
+    width: 300px;
+    justify-self: center;
+    margin:auto;
+}

@@ -1,0 +1,15 @@
+.leftmenu{
+position: fixed;
+width:15%;
+justify-self: start;
+height: 100%;
+background-color: rgb(94, 34, 124);
+}
+.CardContainer{
+    border: 2px solid blue;
+    position: absolute;
+    left: 15%;
+    width: 85%;
+    height: 100%;
+    background-color: darkorchid;
+}
