@@ -8,7 +8,7 @@
     align-items: center;
     overflow:auto;
     background-color: #563573;
-    background: linear-gradient( to bottom,#563573,darkorchid );
+    background: linear-gradient( to bottom,rgb(60, 26, 89),rgb(79, 41, 112),rgba(153, 50, 204,0) );
     font-family:'Rajdhani';
     position:fixed;
     top:0px;

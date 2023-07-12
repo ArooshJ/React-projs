@@ -99,7 +99,7 @@ export default function Posts(props) {
 
     const createnewPost =()=>{
         const p ={
-            id:Number(`${props.postobjs[props.postobjs.length-1].id}`)+1,
+            id: props.postobjs.length ? Number(`${props.postobjs[props.postobjs.length-1].id}`)+1 : 1,
             name: `${props.loggedAcc.UserId}`,
             content:postcontent,
             Media : selectedImage,
@@ -111,10 +111,13 @@ export default function Posts(props) {
            
             }
         props.setpostobjs([...props.postobjs, p])
+       
         UpdateAccpost(p);
        
                 setPostcontent("");
-        setDisplayedposts(props.postobjs)
+                const updateddisplayedposts = [...displayedposts, p];
+                setDisplayedposts(updateddisplayedposts)
+       
         return props.postobjs
         }
     
@@ -284,11 +287,16 @@ export default function Posts(props) {
         props.setpostobjs(
             props.postobjs.filter(post => post.id !== id)
         )
-        setDisplayedposts(props.postobjs)
+        console.log(props.postobjs);
+        // setDisplayedposts(props.postobjs);
+        // setDisplayedposts(props.postobjs);
+        // console.log(displayedposts);
+        setDisplayedposts(prevPosts => prevPosts.filter(post => post.id !== id));
+        //console.log(displayedposts);
     }
     
     // let posts;
-    // useEffect(()=>{ posts = props.postobjs.map( post =>
+    // posts = props.postobjs.map( post =>
     //     <div id="post" key={post.id} className="posts">
     //         Post {post.id}
     //         <button id='Delete' onClick={()=>{DeletePost(post.id)}}>Delete</button>
@@ -367,9 +375,7 @@ export default function Posts(props) {
     //         </div>
     //     </div>
     // ) 
-    // return posts }
-    // ,[props.postobjs]
-    // )
+    
     const HandleFollow = (p)=>{
       props.setAccs(
         props.Accs.map(a =>{
@@ -475,7 +481,7 @@ export default function Posts(props) {
         </div>
     )
     
-   // const [displayedposts,setDisplayedposts] = useState(posts)
+//    const [displayedposts,setDisplayedposts] = useState(posts)
 const allposts = props.postobjs
 
 
@@ -497,10 +503,9 @@ const removefilter =()=>{
         <div id ="Posts">
         {posts}   
 
-      
         </div>
 
-        <div onClick={()=>{setNewPoststyle({display:'flex'})}}>Post Something?</div>
+        <div onClick={()=>{setNewPoststyle({display:'flex'})}}><button>Post Something?</button></div>
 
         <div className="newpostcont">
         <div id="newPost" style = {newPoststyle} >
@@ -519,8 +524,11 @@ const removefilter =()=>{
         
         
         <div className="newpost">
-        <button onClick={()=>{createnewPost()
-                               setNewPoststyle({display:'none'})}}>Post</button>
+        <button onClick={()=>{createnewPost();
+                              // setDisplayedposts(props.postobjs)
+                               setNewPoststyle({display:'flex'}); 
+                               }}
+                               >Post</button>
         </div>
         
 
