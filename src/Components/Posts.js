@@ -26,6 +26,8 @@ export default function Posts(props) {
         }
         
     }
+    console.log('selectefimg',selectedImage)
+    
     const HandleCommentChange =(e)=>{
          setComContent(e.target.value)
     }

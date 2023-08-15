@@ -40,7 +40,7 @@ export default class NavBar2 extends Component {
                {/* <Link to= "#"> Lectures  </Link> */}
                <Link to="/Library"> Library  </Link>
                {/* <Link to="#"> Internships  </Link> */}
-               <Link to="/Jobs"> Jobs  </Link>
+               <Link to="/News"> News  </Link>
                {/* <Link to="#"> Doubt-Center </Link> */}
                <Link to="/Quiz"> Quiz </Link>
   

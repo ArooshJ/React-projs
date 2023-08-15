@@ -17,6 +17,7 @@ import Quiz from './Components/Quiz';
 import Library from './Components/Library';
 import Menu from './Components/Menu';
 import Profile from './Components/Profile';
+import News from './Components/News';
 
 
 // let initAccounts =[{
@@ -412,6 +413,9 @@ const HandleMenu = ()=>{
                 <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>} />
               <Route path = '/Jobs' element = {login ? <Jobs /> :<div style = {bgstyle}>
+                <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
+              </div>} />
+              <Route path = '/News' element = {login ? <News /> :<div style = {bgstyle}>
                 <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
               </div>} />
               <Route path = '/Quiz' element = {login ? <Quiz /> :<div style = {bgstyle}>
