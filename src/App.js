@@ -387,7 +387,7 @@ const HandleMenu = ()=>{
 
           <div className="container" style={bgstyle} >
             <Routes>
-              <Route  path = '/' element={ login ? <Home/> : 
+              <Route  path = '/React-projs' element={ login ? <Home/> : 
                  <div style = {bgstyle}>
                    <Loginform  uidc = {HandleUIDChange} emc = {HandleEmailChange} pwdc ={newPwdChange} confirm = {confirmPwdChange} create ={CreateAcc} onSubmit = {sub} btnstyle={btnStyle} tbstyle = {tboxStyle}  />
                  </div>}></Route>
