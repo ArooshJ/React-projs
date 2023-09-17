@@ -33,7 +33,7 @@ export default class NavBar2 extends Component {
           
           
           <div className="main" id="navbar"  >
-               <Link to ="/"> Home </Link>
+               <Link to ="/React-projs/"> Home </Link>
                <Link to="/TextEditor"> TextEditor </Link>
                {/* <Link to="#"> VLabs </Link> */}
                <Link to= "/VConnect"> VConnect  </Link>
