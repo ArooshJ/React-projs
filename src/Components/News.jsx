@@ -52,7 +52,7 @@ let NewsCards = articles.map(article => <div className='newscard'>
   return (
     <div className='news'>
       <div className="newstitle">
-        <h1>NEWS OF INDIA</h1>
+        <h1>LATEST NEWS</h1>
       </div>
       <div className="NewsContainer">
         {NewsCards}

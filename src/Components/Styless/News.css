@@ -1,6 +1,14 @@
 .NewsContainer{
     border-top:2px solid white;
+
 }
+.news{
+    background-image: url("5442673.jpg");
+    background-repeat: no-repeat; /* Prevent the background from repeating */
+    background-size: cover; /* Stretch the image to cover the entire element */
+    padding: 1%;
+}
+
 .newscard{
     border: 2px solid violet;
     margin:9px 2px;

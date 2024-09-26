@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Styless/Home.css';
+import './Styless/Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -42,7 +42,7 @@ export default class NavBar2 extends Component {
                {/* <Link to="#"> Internships  </Link> */}
                <Link to="/News"> News  </Link>
                {/* <Link to="#"> Doubt-Center </Link> */}
-               <Link to="/Quiz"> Quiz </Link>
+               {/* <Link to="/Quiz"> Quiz </Link> */}
   
           </div>
 

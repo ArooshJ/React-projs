@@ -402,7 +402,7 @@ export default function Posts(props) {
             </div>
             <div className="netContent">
             <div className="media">
-             <img src= {post.Media} alt="idk why doesnt this work" id ="postimage"/>
+             <img src= {post.Media} alt="Failed to load image" id ="postimage"/>
             </div>
             <div className="Content">
                    {post.content}

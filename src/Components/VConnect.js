@@ -5,16 +5,19 @@ import Posts from './Posts'
 export default function VConnect(props) {
   return (
     <div id ='VconnectBody'style={props.bgstyle}>
-       <Navbar />
+       {/* <Navbar /> */}
       <div id = 'About'>
        
         <h3>What is VConnect? </h3>
         <br />
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint similique, iure quod harum enim reiciendis quos inventore mollitia sapiente veritatis nulla voluptas alias laborum dolor earum autem amet necessitatibus cum obcaecati? Quia quasi quos ipsam nobis necessitatibus labore atque rem, quibusdam quis accusantium sint animi suscipit alias omnis consequatur? Minima dicta rem commodi ut, ea neque voluptates.
+       
+        VConnect is a complete social media website, where you can make posts, like them , comment on them, and reply to the comments, you can also like the comments and replies by pressing the like button, you can also filter the posts made by you, using the filter option, and also post images from your device.
+        
+
       </div>
-         <h1>
+         {/* <h1>
             DIVE IN !!!!
-         </h1>
+         </h1> */}
 
          <Posts loggedAcc ={props.loggedAcc} postobjs ={props.postobjs} setpostobjs = {props.setpostobjs} setAccs ={props.setAccs} Accs ={props.Accs} setLoggedinAcc = {props.setLoggedinAcc}/>
          <br />

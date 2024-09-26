@@ -7,7 +7,11 @@ export default function Loginform(props) {
 
        <div className="content">
         <h1>What is My-Site?.. </h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus cupiditate odit culpa sapiente quas nihil suscipit a, deserunt aliquid incidunt. Consequatur quisquam velit qui at molestias quam reprehenderit tempora nesciunt ad cupiditate corrupti adipisci ex voluptates consectetur aperiam vitae aliquid dolorum, pariatur expedita dolore, ducimus iure. Praesentium minus dolores eveniet accusantium nemo, ea optio excepturi autem nisi quas. Nesciunt molestias repellendus praesentium nihil in? Consectetur sequi eaque illum quod fugit?</p>
+        
+        <p>
+          MySite is a multipurpose website wherein you can tryout miscellneous things. There's a text editor wherein you can beautify your text and play with it. A News tab where you can view the latest news. But the main feature is our social media tab VConnect where you can post (with images), like, comment and reply. The website also has basic authentication features.
+        </p>
+
        </div>
       
         <form action="">

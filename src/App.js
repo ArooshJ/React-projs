@@ -4,7 +4,7 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 //import { Switch } from 'react-router-dom';
 
-import Home from './Components/Home';
+// import Home from './Components/Home';
 import Newcomp1 from './Components/Newcomp1';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
@@ -18,7 +18,7 @@ import Library from './Components/Library';
 import Menu from './Components/Menu';
 import Profile from './Components/Profile';
 import News from './Components/News';
-
+import Home from './Components/Home2'
 
 // let initAccounts =[{
 //   AccId:1,
